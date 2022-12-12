@@ -2,6 +2,7 @@ let teleBot, checkTimer;
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 const serverToCheck = require('../server.json').servers;
+const checkInterval = process.env.CHECK_INTERVAL ?? 300;
 
 const start = async () => {
     try {
@@ -83,7 +84,7 @@ const checkHealthStatus = async () => {
     } catch (err) {
         console.log(err);
     } finally {
-        checkTimer = setTimeout(checkHealthStatus, 60 * 1000); // 1 minutes
+        checkTimer = setTimeout(checkHealthStatus, checkInterval * 1000); // 1 minutes
     }
 }
 
