@@ -62,7 +62,7 @@ const checkHealthStatus = async () => {
                         break;
 
                     default:
-                        console.log('unknown error')
+                        console.log('error: ', err.message)
                         break;
                 }
 
