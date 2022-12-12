@@ -72,10 +72,12 @@ const checkHealthStatus = async () => {
             if (status !== server.isUp) {
                 server.isUp = !server.isUp;
 
-                if (status) {
-                    teleBot.telegram.sendMessage(-656861934, `Server ${server.name} is up...`);
-                } else {
-                    teleBot.telegram.sendMessage(-656861934, `Server ${server.name} is down...`)
+                for (const teleGroupId of server.groups) {
+                    if (status) {
+                        teleBot.telegram.sendMessage(teleGroupId, `Server ${server.name} is up...`)
+                    } else {
+                        teleBot.telegram.sendMessage(teleGroupId, `Server ${server.name} is down...`)
+                    }
                 }
             }
 
